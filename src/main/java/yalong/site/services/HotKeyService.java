@@ -57,6 +57,7 @@ public class HotKeyService {
         GlobalScreen.addNativeKeyListener(new HotKeyListener(caiHongEnd()));
         GlobalScreen.addNativeKeyListener(new HotKeyListener(garbageHome()));
         GlobalScreen.addNativeKeyListener(new HotKeyListener(markWordDelete()));
+        GlobalScreen.addNativeKeyListener(new HotKeyListener(yiJianHanHua()));
     }
 
     private static void sendMsg(String s) {
@@ -143,6 +144,59 @@ public class HotKeyService {
                 nextLineNo = (nextLineNo + 1) % size;
                 GlobalData.lastCommunicateWord = s;
             }
+        };
+    }
+
+    public static Consumer<Integer> yiJianHanHua() {
+        return i -> {
+            if (GlobalData.communicate && i == NativeKeyEvent.VC_BACKQUOTE) {
+                GlobalData.selectingMessage = true;
+                GlobalScreen.addNativeKeyListener(new HotKeyListener(xuanZeHanHua()));
+            }
+        };
+    }
+
+    public static Consumer<Integer> xuanZeHanHua() {
+        return i -> {
+            if (GlobalData.communicate && GlobalData.selectingMessage) {
+                if(i == NativeKeyEvent.VC_F1){
+                    System.out.println(i);
+                    String s = GlobalData.hanhuaWords.get(0);
+                    System.out.println(s);
+                    sendMsg(s);
+                }
+                else if(i == NativeKeyEvent.VC_F2){
+                    System.out.println(i);
+                    String s = GlobalData.hanhuaWords.get(1);
+                    System.out.println(s);
+                    sendMsg(s);
+                }
+                else if(i == NativeKeyEvent.VC_F3){
+                    System.out.println(i);
+                    String s = GlobalData.hanhuaWords.get(2);
+                    System.out.println(s);
+                    sendMsg(s);
+                }
+                else if(i == NativeKeyEvent.VC_F4){
+                    System.out.println(i);
+                    String s = GlobalData.hanhuaWords.get(3);
+                    System.out.println(s);
+                    sendMsg(s);
+                }
+                else if(i == NativeKeyEvent.VC_F5){
+                    System.out.println(i);
+                    String s = GlobalData.hanhuaWords.get(4);
+                    System.out.println(s);
+                    sendMsg(s);
+                }
+                else if(i == NativeKeyEvent.VC_F6){
+                    System.out.println(i);
+                    String s = GlobalData.hanhuaWords.get(5);
+                    System.out.println(s);
+                    sendMsg(s);
+                }
+            }
+            GlobalData.selectingMessage = false;
         };
     }
 

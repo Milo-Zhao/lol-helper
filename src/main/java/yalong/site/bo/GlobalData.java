@@ -43,6 +43,8 @@ public class GlobalData {
 
     public static boolean communicate = true;
 
+    public static boolean selectingMessage = false;
+
     public static boolean moyan = false;
 
     public static RankBO currentRankBO = new RankBO("RANKED_SOLO_5x5", "CHALLENGER", "IV");
@@ -52,5 +54,6 @@ public class GlobalData {
     public static ArrayList<String> otherTeamScore = new ArrayList<>();
     public static ArrayList<String> myTeamScore = new ArrayList<>();
     public static ArrayList<String> communicateWords;
+    public static ArrayList<String> hanhuaWords;
     public static String lastCommunicateWord;
 }

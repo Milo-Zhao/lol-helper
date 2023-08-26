@@ -4,6 +4,7 @@ import yalong.site.bo.GlobalData;
 import yalong.site.frame.bo.ComponentBO;
 import yalong.site.frame.panel.base.BaseCheckBox;
 import yalong.site.services.LoadGarbageWord;
+import yalong.site.services.LoadHanHuaWord;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,8 +37,10 @@ public class SendScoreCheckBox extends BaseCheckBox {
         // 加载垃圾话
         LoadGarbageWord loadGarbageWord = new LoadGarbageWord();
         loadGarbageWord.loadDefaultFile();
+        LoadHanHuaWord loadHanHuaWord = new LoadHanHuaWord();
+        loadHanHuaWord.loadDefaultFile();
         GlobalData.communicateWords = loadGarbageWord.loadWord();
-
+        GlobalData.hanhuaWords = loadHanHuaWord.loadWord();
         SendScoreCheckBox box = new SendScoreCheckBox();
         GridBagConstraints grid = new GridBagConstraints(
                 // 第(2,1)个格子
